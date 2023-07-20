@@ -8,7 +8,15 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 from django.db.models import Exists, OuterRef
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.views import View
+from .tasks import hello
 
+class IndexView(View):
+    def get(self, request):
+        printer.apply_async([10], countdown = 5)
+        hello.delay()
+        return HttpResponse('Hello!')
 class PostsList(ListView):
     paginate_by = 3
     model = Post

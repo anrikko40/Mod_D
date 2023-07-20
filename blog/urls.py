@@ -6,6 +6,7 @@ from .views import NewsCreate, NewsUpdate, NewsDelete
 from .views import (
     PostsList, PostDetail, PostCreate, PostUpdate, PostDelete,
     subscriptions
+from .views import IndexView
 )
 
 urlpatterns = [
@@ -21,4 +22,5 @@ urlpatterns = [
     path('subscriptions/', subscriptions, name='subscriptions'),
     path('<int:pk>/update/', PostUpdate.as_view(), name='post_update'),
     path('<int:pk>/delete/', PostDelete.as_view(), name='post_delete'),
+    path('', IndexView.as_view()),
 ]
