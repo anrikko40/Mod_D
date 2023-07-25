@@ -8,7 +8,8 @@
     <title>Django - news portal</title>
 
     {% load static %}
-    <!-- Core theme CSS (includes Bootstrap)-->
+    {% load cache %} <!-- Загружаем кэширование -->
+    {% cache 200 sidebar %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
 </head>
 
@@ -40,6 +41,9 @@
 <!-- Page content-->
 <div class="container">
     <div class="row">
+
+            {% endcache %}
+
             {% block content %}
             {% endblock content %}
     </div>
